@@ -1,0 +1,15 @@
+[Unit]
+Description=Kick hardware watchdog device periodically
+After=multi-user.target
+
+[Service]
+Type=simple
+Environment=WATCHDOG_DEVICE=/dev/watchdog3
+Environment=WATCHDOG_BASE_ADDR=0x14c37400
+Environment=WATCHDOG_INTERVAL=10
+ExecStart=/usr/sbin/watchdog-kick.sh
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
